@@ -15,10 +15,16 @@ class PHJT {
     private static $defaultAlgorithm = 'HS256';
 
     /**
-     * Secret key for signing the token.
+     * Secret key for signing the token. Should be securely set.
      * @var string
      */
-    private static $secretKey = 'default_key';
+    private static $secretKey = '';
+
+    /**
+     * Default encryption key. This should be changed or set securely.
+     * @var string
+     */
+    private static $key = "";
 
     /**
      * Supported symmetric algorithms (HMAC).
@@ -67,6 +73,11 @@ class PHJT {
 
         if (!isset(self::$supportedAlgs[$algorithm])) {
             return ['status' => false, 'message' => 'Unsupported algorithm', 'data' => null];
+        }
+
+        // Ensure key is securely set
+        if (empty(self::$key) || strlen(self::$key) < 18) {
+            return ['status' => false, 'message' => 'Encryption key must be at least 18 characters long.', 'data' => null];
         }
 
         $header = [
@@ -152,8 +163,30 @@ class PHJT {
      * @return array Result of the key rotation
      */
     public static function rotate($newSecretKey) {
-        self::$secretKey = $newSecretKey;
-        return ['status' => true, 'message' => 'Secret key rotated successfully', 'data' => null];
+        if (!empty($newSecretKey) && strlen($newSecretKey) >= 18) {
+            self::$secretKey = $newSecretKey;
+            return ['status' => true, 'message' => 'Secret key rotated successfully', 'data' => null];
+        }
+        return ['status' => false, 'message' => 'New secret key must be at least 18 characters long.', 'data' => null];
+    }
+
+    /**
+     * Updates the default encryption key.
+     *
+     * @param string $new_key The new encryption key.
+     * @return array
+     */
+    public static function key($new_key) {
+        try {
+            if (!empty($new_key) && strlen($new_key) >= 18) {
+                self::$key = $new_key;
+                return ['status' => true, 'message' => 'Key updated successfully.', 'data' => null];
+            } else {
+                throw new Exception('New key must be at least 18 characters long.');
+            }
+        } catch (Exception $e) {
+            return ['status' => false, 'message' => $e->getMessage(), 'data' => null];
+        }
     }
 
     /**
@@ -168,17 +201,6 @@ class PHJT {
         }
         self::$defaultAlgorithm = $newAlgorithm;
         return ['status' => true, 'message' => 'Default algorithm updated successfully', 'data' => null];
-    }
-
-    /**
-     * Set a new secret key for signing
-     *
-     * @param string $newSecretKey The new secret key
-     * @return array Result of setting the new key
-     */
-    public static function key($newSecretKey) {
-        self::$secretKey = $newSecretKey;
-        return ['status' => true, 'message' => 'Secret key updated successfully', 'data' => null];
     }
 }
 
