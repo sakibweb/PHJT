@@ -152,7 +152,7 @@ class PHJT {
      * @param string $newAlgorithm The new algorithm to set as default
      * @return array Result of setting the algorithm
      */
-    public static function setAlgorithm($newAlgorithm) {
+    public static function algorithm($newAlgorithm) {
         if (!isset(self::$supportedAlgs[$newAlgorithm])) {
             return ['status' => false, 'message' => 'Unsupported algorithm', 'data' => null];
         }
@@ -166,7 +166,7 @@ class PHJT {
      * @param string $newSecretKey The new secret key
      * @return array Result of setting the new key
      */
-    public static function setKey($newSecretKey) {
+    public static function key($newSecretKey) {
         self::$secretKey = $newSecretKey;
         return ['status' => true, 'message' => 'Secret key updated successfully', 'data' => null];
     }
