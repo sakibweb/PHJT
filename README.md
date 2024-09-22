@@ -29,12 +29,12 @@ Supports secret key rotation without affecting existing tokens.
 # Usage Guide:
 * Setting Secret Key: You can update the secret key dynamically without rotating keys.
 ```
-phjt::key('another_secret_key');
+PHJT::key('powerful_secret_key');
 ```
 
 * Setting Algorithm: If you want to change the default algorithm used for signing, use the setAlgorithm method.
 ```
-phjt::algorithm('HS512');
+PHJT::algorithm('HS512');
 ```
 
 * Generating a Token: You can create a JWT token using the create method. This will generate a token based on the provided payload, expiration time, and the algorithm.
