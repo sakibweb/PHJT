@@ -8,12 +8,22 @@
  */
 class PHJT {
 
-    // Default algorithm
+    /**
+     * Default algorithm.
+     * @var string
+     */
     private static $defaultAlgorithm = 'HS256';
-    // Secret key for signing the token
+
+    /**
+     * Secret key for signing the token.
+     * @var string
+     */
     private static $secretKey = 'default_key';
 
-    // Supported symmetric algorithms (HMAC)
+    /**
+     * Supported symmetric algorithms (HMAC).
+     * @var array
+     */
     private static $supportedAlgs = [
         'HS256' => 'sha256',
         'HS384' => 'sha384',
