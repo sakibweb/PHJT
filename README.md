@@ -70,3 +70,11 @@ phjt::rotate('new_secret_key');
 ```
 
 This PHJT class is highly modular, making it easy to integrate into a PHP project for managing JWT authentication in a secure and flexible way.
+
+
+#GPT-4o
+* Prompt: ```read full library from "https://github.com/sakibweb/PHJT","https://raw.githubusercontent.com/sakibweb/PHJT/refs/heads/main/PHJT.php" focus on key management and algorithm then explain how many time needed to decode a jwt with most powerful computer right now ? note: give me the short answer based on only this library.```
+
+* Reply: ```The library PHJT you referenced for JWT management focuses on key creation, signing, and verification using HMAC algorithms like HS256, HS384, and HS512. The default algorithm is HS256, and the secret key is used to generate and verify JWT signatures.
+Regarding your question on how long it would take to decode a JWT using the most powerful computer: since JWT tokens signed with HMAC (like HS256) rely on a secret key for security, decoding without the key would require brute-forcing the secret. The time depends on the length and complexity of the secret key. PHJT requires keys to be at least 18 characters long, making brute-forcing difficult.
+With current supercomputers, brute-forcing a sufficiently long and complex key (like one with 18+ characters including symbols, numbers, and letters) could take an extremely long time, even for the most powerful machines—potentially millions of years depending on the exact key strength and algorithm used. ```
