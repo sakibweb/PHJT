@@ -72,7 +72,7 @@ phjt::rotate('new_secret_key');
 This PHJT class is highly modular, making it easy to integrate into a PHP project for managing JWT authentication in a secure and flexible way.
 
 
-#GPT-4o
+# GPT-4o
 * Prompt: ```read full library from "https://github.com/sakibweb/PHJT","https://raw.githubusercontent.com/sakibweb/PHJT/refs/heads/main/PHJT.php" focus on key management and algorithm then explain how many time needed to decode a jwt with most powerful computer right now ? note: give me the short answer based on only this library.```
 
 * Reply: ```The library PHJT you referenced for JWT management focuses on key creation, signing, and verification using HMAC algorithms like HS256, HS384, and HS512. The default algorithm is HS256, and the secret key is used to generate and verify JWT signatures.
